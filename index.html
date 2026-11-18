@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vinícius Santos | Sites, Design e Sistemas em Bauru</title>
+<meta name="description" content="Vinícius Cardoso dos Santos, desenvolvedor web em Bauru. Criação de sites, design de interface e sistemas sob medida: reservas, cobranças e painéis administrativos.">
+<link rel="canonical" href="https://viniciuscardoso-0701.github.io/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Vinícius Santos | Sites, Design e Sistemas em Bauru">
+<meta property="og:description" content="Vinícius Cardoso dos Santos, desenvolvedor web em Bauru. Criação de sites, design de interface e sistemas sob medida: reservas, cobranças e painéis administrativos.">
+<meta property="og:url" content="https://viniciuscardoso-0701.github.io/">
+<meta name="theme-color" content="#0A1322">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Vinícius Cardoso dos Santos","description":"Criação de sites, design de interface e sistemas sob medida.","url":"https://viniciuscardoso-0701.github.io/","telephone":"+5514991104822","email":"viniciussantos01072007@gmail.com","areaServed":"Bauru e região","address":{"@type":"PostalAddress","addressLocality":"Bauru","addressRegion":"SP","addressCountry":"BR"}}</script>
+<style>img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: página única, demos clicáveis do sistema real como prova do trabalho. Dark-first, tinta azul-petróleo + coral. */
+:root{
+  --bg:#0A1322; --bg2:#0F1B30; --surface:#142239; --fg:#EEF2FA; --muted:#9FB0CB; --line:#243652;
+  --accent:#FF6B4A; --accent-fg:#1A0A05; --soft:#2A2030;
+  --ok:#5FD3A0; --ok-bg:#12372B; --warn:#F5C969; --warn-bg:#3A2E10; --busy:#FF8FA3; --busy-bg:#42182A;
+  --grid:rgba(159,176,203,.07);
+  --f-head:'Bricolage Grotesque',system-ui,sans-serif; --f-body:'Inter',system-ui,sans-serif; --f-mono:'JetBrains Mono',ui-monospace,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F2F4F9; --bg2:#E8ECF4; --surface:#FFFFFF; --fg:#0C1830; --muted:#52627E; --line:#D3DAE8;
+  --accent:#D9381B; --accent-fg:#FFFFFF; --soft:#FFE9E3;
+  --ok:#11704A; --ok-bg:#D8F1E4; --warn:#855400; --warn-bg:#FFEDC2; --busy:#9C2440; --busy-bg:#FADDE4;
+  --grid:rgba(12,24,48,.06); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#F2F4F9; --bg2:#E8ECF4; --surface:#FFFFFF; --fg:#0C1830; --muted:#52627E; --line:#D3DAE8;
+  --accent:#D9381B; --accent-fg:#FFFFFF; --soft:#FFE9E3;
+  --ok:#11704A; --ok-bg:#D8F1E4; --warn:#855400; --warn-bg:#FFEDC2; --busy:#9C2440; --busy-bg:#FADDE4;
+  --grid:rgba(12,24,48,.06); color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--f-head);margin:0;line-height:1.08;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+button{font:inherit;color:inherit;cursor:pointer}
+.mono{font-family:var(--f-mono)}
+/* topo */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;
+  background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.brand{font-family:var(--f-head);font-weight:800;font-size:1.15rem;display:flex;align-items:center;gap:10px}
+.logo{width:28px;height:28px;border-radius:8px;background:var(--accent);display:grid;place-items:center;color:var(--accent-fg);font-weight:800;font-size:.85rem}
+nav{display:flex;gap:6px;align-items:center;font-size:.9rem}
+nav a{color:var(--muted);text-decoration:none;padding:6px 10px;border-radius:8px}
+nav a:hover{color:var(--fg);background:var(--surface)}
+.theme{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;font-size:.85rem}
+/* hero */
+.hero{padding:72px 0 48px;display:grid;grid-template-columns:1.25fr 1fr;gap:40px;align-items:center}
+.hero>*{min-width:0}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;color:var(--accent);letter-spacing:.06em;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent)}
+.hero h1{font-size:clamp(2.4rem,6.4vw,4.6rem);font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:1.15rem;max-width:50ch;margin-top:20px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-block;padding:13px 22px;border-radius:10px;font-weight:600;text-decoration:none;border:1.5px solid var(--accent);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{color:var(--fg);border-color:var(--line);background:var(--surface)}
+.stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.stack span{font-family:var(--f-mono);font-size:.76rem;padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:var(--muted);background:var(--bg2)}
+/* cartão de demo */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 20px 50px -25px rgba(0,0,0,.5)}
+.demo-tag{font-family:var(--f-mono);font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.cal-head{display:flex;justify-content:space-between;align-items:center;margin:8px 0 12px}
+.cal-head h3{font-size:1.15rem;text-transform:capitalize}
+.cal-head button{border:1px solid var(--line);background:var(--bg2);border-radius:8px;width:34px;height:34px}
+.cal-head button:disabled{opacity:.35;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center}
+.dow{font-size:.7rem;color:var(--muted);padding-bottom:2px}
+.d{aspect-ratio:1/.9;border-radius:8px;border:1px solid var(--line);background:var(--bg2);font-size:.85rem;display:grid;place-items:center;padding:0}
+.d.off{opacity:.25;border-color:transparent;background:transparent}
+.d.past{opacity:.35;cursor:default}
+.d.free{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.d.free:hover{outline:2px solid var(--ok)}
+.d.hold{background:var(--warn-bg);color:var(--warn);border-color:transparent;cursor:default}
+.d.busy{background:var(--busy-bg);color:var(--busy);border-color:transparent;cursor:default}
+.d.sel{outline:3px solid var(--accent);background:var(--accent);color:var(--accent-fg);font-weight:700}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:.76rem;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px}
+.result{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--bg2);border:1px dashed var(--line);font-size:.9rem;min-height:3.4em}
+.result b{color:var(--accent)}
+/* faixa de números */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:8px 0 0}
+.fact{background:var(--surface);padding:22px 20px}
+.fact strong{display:block;font-family:var(--f-head);font-size:2.4rem;font-weight:800;line-height:1}
+.fact span{color:var(--muted);font-size:.88rem}
+/* seções */
+section{padding:72px 0 8px;scroll-margin-top:60px}
+.sec-h{display:grid;gap:10px;margin-bottom:28px;max-width:62ch}
+.sec-h .eyebrow{margin-bottom:0}
+.sec-h h2{font-size:clamp(1.8rem,4.4vw,2.8rem);font-weight:800;letter-spacing:-.015em}
+.sec-h p{color:var(--muted)}
+/* serviços */
+.svcs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.svc{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px;transition:border-color .15s,transform .15s}
+.svc:hover{border-color:var(--accent);transform:translateY(-3px)}
+.svc h3{font-size:1.15rem;margin-bottom:8px;display:flex;justify-content:space-between;gap:8px}
+.svc h3 span{color:var(--accent);font-family:var(--f-mono);transition:transform .2s}
+.svc p{color:var(--muted);font-size:.93rem}
+.svc .more{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);color:var(--fg)}
+.svc[aria-expanded="true"] .more{display:block}
+.svc[aria-expanded="true"] h3 span{transform:rotate(45deg)}
+/* tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 16px;font-size:.9rem}
+.tab[aria-pressed="true"],.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+.panel>*{min-width:0}
+.panel[hidden]{display:none}
+.panel h3{font-size:1.5rem;margin-bottom:10px}
+.panel p.t{color:var(--muted)}
+.panel ul{margin:14px 0 0;padding-left:1.1em;color:var(--muted)}
+.panel li{margin-bottom:4px}
+.pay{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:1fr auto;gap:6px 12px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg2)}
+.row .who{font-weight:600}
+.row .meta{font-size:.82rem;color:var(--muted);grid-column:1}
+.pill{font-size:.72rem;padding:3px 9px;border-radius:999px;font-weight:600;justify-self:end}
+.pill.late{background:var(--busy-bg);color:var(--busy)}
+.pill.today{background:var(--warn-bg);color:var(--warn)}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.acts{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.acts button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;font-size:.82rem}
+.acts button.wa{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+.acts button:disabled{opacity:.6;cursor:default}
+.wl{display:grid;gap:10px}
+.wl .dates{display:flex;gap:8px;flex-wrap:wrap}
+.wl .dates button{border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:8px 12px;font-size:.85rem}
+.wl .dates button[aria-pressed="true"]{border-color:var(--accent);outline:2px solid var(--accent)}
+.wl input{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);width:100%}
+.queue{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.9rem}
+.queue li{display:flex;justify-content:space-between;padding:8px 12px;border-radius:8px;background:var(--bg2);border:1px solid var(--line)}
+.queue li.me{border-color:var(--accent);background:var(--soft)}
+
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px}
+.proj{display:flex;flex-direction:column;gap:12px;min-width:0}
+.proj[hidden]{display:none}
+.badge{align-self:flex-start;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--ok-bg);color:var(--ok)}
+.badge.demo{background:var(--soft);color:var(--accent)}
+.proj h3{font-size:1.3rem}
+.proj>p{color:var(--muted);font-size:.93rem}
+.proj .stack{margin-top:0}
+.proj .btn{align-self:flex-start;padding:9px 16px;font-size:.9rem}
+.mini{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px}
+.slots{display:flex;flex-wrap:wrap;gap:6px}
+.slots button{border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:6px 10px;font-size:.82rem}
+.slots button:disabled{opacity:.35;text-decoration:line-through;cursor:default}
+.slots button.on{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.mini .out{font-size:.85rem;color:var(--muted);min-height:2.6em}
+.mini .out b{color:var(--accent)}
+.stk{display:grid;grid-template-columns:1fr auto auto auto;gap:6px 8px;align-items:center;font-size:.88rem}
+.stk button{border:1px solid var(--line);background:var(--bg2);border-radius:6px;width:28px;height:28px}
+.stk .q{font-family:var(--f-mono);min-width:2ch;text-align:center}
+.stk .low{color:var(--busy);font-size:.72rem;font-weight:600}
+.mens{display:grid;gap:6px;font-size:.88rem}
+.mens button{display:flex;justify-content:space-between;gap:8px;width:100%;border:1px solid var(--line);background:var(--bg2);border-radius:8px;padding:8px 10px;text-align:left}
+.mens button.paid{background:var(--ok-bg);color:var(--ok);border-color:transparent}
+.bar{height:8px;border-radius:99px;background:var(--bg2);border:1px solid var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .25s}
+
+.play{padding:16px}
+.presets,.views{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0}
+.presets .tab,.views .tab{padding:5px 12px;font-size:.8rem}
+.stage{margin-top:12px;background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;justify-content:center}
+.site{--p-bg:#FFFFFF;--p-fg:#10223F;--p-ac:#1F5FD6;--p-sf:#EEF3FB;--p-r:6px;--p-f:'Inter',sans-serif;--p-hw:700;
+  width:100%;max-width:100%;background:var(--p-bg);color:var(--p-fg);font-family:var(--p-f);border-radius:10px;overflow:hidden;transition:max-width .3s;border:1px solid rgba(128,128,128,.25)}
+.site[data-p=mod]{--p-bg:#0E1424;--p-fg:#EEF1FA;--p-ac:#FF6B4A;--p-sf:#18213A;--p-r:14px;--p-f:'Bricolage Grotesque',sans-serif;--p-hw:800}
+.site[data-p=soft]{--p-bg:#F4FAF6;--p-fg:#16352A;--p-ac:#2E9E6B;--p-sf:#E1F2E8;--p-r:22px;--p-f:'Inter',sans-serif;--p-hw:600}
+.site[data-p=bold]{--p-bg:#FFE14D;--p-fg:#111111;--p-ac:#111111;--p-sf:#FFFFFF;--p-r:0px;--p-f:'Bricolage Grotesque',sans-serif;--p-hw:800}
+.site.cel{max-width:230px}
+.s-nav{display:flex;justify-content:space-between;gap:8px;padding:10px 14px;font-size:.78rem;border-bottom:1px solid color-mix(in srgb,var(--p-fg) 15%,transparent)}
+.s-nav span{opacity:.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site.cel .s-nav span{display:none}
+.s-hero{padding:22px 14px;display:grid;gap:8px;justify-items:start}
+.s-hero h4{margin:0;font-size:1.25rem;line-height:1.12;font-weight:var(--p-hw);letter-spacing:-.01em}
+.s-hero p{margin:0;font-size:.8rem;opacity:.8}
+.s-btn{background:var(--p-ac);color:var(--p-bg);font-size:.8rem;font-weight:600;padding:7px 14px;border-radius:var(--p-r)}
+.site[data-p=bold] .s-btn{color:#FFE14D}
+.s-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 14px 16px}
+.site.cel .s-cards{grid-template-columns:1fr}
+.s-cards div{background:var(--p-sf);border-radius:var(--p-r);padding:10px;font-size:.8rem;font-weight:600;border:1px solid color-mix(in srgb,var(--p-fg) 10%,transparent)}
+.s-cards small{display:block;font-weight:400;opacity:.7;font-size:.72rem}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.level{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:10px;align-content:start}
+.level .n{font-family:var(--f-mono);font-size:.75rem;color:var(--accent);letter-spacing:.08em;text-transform:uppercase}
+.level h3{font-size:1.4rem}
+.level p{color:var(--muted);font-size:.93rem}
+.level ul{margin:0;padding-left:1.1em;font-size:.92rem}
+.level li{margin-bottom:3px}
+.level.hi{border-color:var(--accent)}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px}
+.principles div{border-left:3px solid var(--accent);padding:4px 0 4px 14px}
+.principles b{font-family:var(--f-head);display:block}
+.principles span{color:var(--muted);font-size:.9rem}
+/* processo */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;padding:0;margin:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);color:var(--accent);font-size:.85rem}
+.steps h3{font-size:1.1rem;margin:6px 0}
+.steps p{color:var(--muted);font-size:.92rem}
+/* orçamento */
+.quote{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.quote>*{min-width:0}
+fieldset{border:0;padding:0;margin:0 0 16px}
+legend{font-size:.8rem;font-family:var(--f-mono);color:var(--muted);margin-bottom:8px;padding:0;text-transform:uppercase;letter-spacing:.06em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--bg2);font-size:.88rem}
+.chips input:checked+span{background:var(--accent);color:var(--accent-fg);border-color:var(--accent);font-weight:600}
+.chips input:focus-visible+span{outline:3px solid var(--accent);outline-offset:2px}
+.quote input[type=text]{font:inherit;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg2);color:var(--fg);width:100%}
+.msg{white-space:pre-wrap;font-size:.92rem;background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:16px;min-height:11em}
+.msg-actions{display:flex;gap:10px;align-items:center;margin-top:12px;flex-wrap:wrap}
+.contact{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center;margin-top:28px}
+.contact code{font-family:var(--f-mono);background:var(--surface);border:1px solid var(--line);padding:6px 12px;border-radius:8px;user-select:all;font-size:.9rem}
+.contact button{border:1px solid var(--line);background:transparent;padding:6px 12px;border-radius:8px;font-size:.85rem}
+footer{margin-top:72px;padding:28px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+@media (max-width:820px){.hero,.panel,.quote{grid-template-columns:1fr}.hero{padding-top:40px}nav a{display:none}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand" style="min-width:0"><span class="logo" aria-hidden="true">VS</span><span class="who-name">Vinícius Cardoso dos Santos</span></div>
+    <nav aria-label="Seções"><a href="#servicos">Serviços</a><a href="#projetos">Projetos</a><a href="#sistema">Sistema</a><a href="#orcamento">Orçamento</a><button class="theme" id="theme" type="button" aria-label="Alternar tema claro e escuro">Tema</button></nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Design e desenvolvimento web · Bauru e região</p>
+      <h1>Do site simples ao sistema completo, com <em>design</em> que impressiona.</h1>
+      <p class="lead">Faço desde uma página de apresentação até sistemas com painel, banco de dados e automações. Em todos os níveis, o visual é pensado para passar confiança e funcionar bem no celular.</p>
+      <div class="cta"><a class="btn primary" href="#orcamento">Montar meu pedido</a><a class="btn ghost" href="#projetos">Ver projetos</a></div>
+      <div class="stack" aria-label="Tecnologias"><span>Design de interface</span><span>HTML + CSS</span><span>JavaScript</span><span>PHP</span><span>MySQL</span></div>
+    </div>
+    <div class="card play" aria-label="Estilos de design ao vivo">
+      <p class="demo-tag">Design ao vivo · escolha um estilo</p>
+      <div class="chips presets" id="presets" role="group" aria-label="Estilos">
+        <button type="button" class="tab" data-p="corp" aria-pressed="true">Corporativo</button>
+        <button type="button" class="tab" data-p="mod" aria-pressed="false">Moderno</button>
+        <button type="button" class="tab" data-p="soft" aria-pressed="false">Suave</button>
+        <button type="button" class="tab" data-p="bold" aria-pressed="false">Ousado</button>
+      </div>
+      <div class="views"><button type="button" class="tab" data-v="pc" aria-pressed="true">Computador</button><button type="button" class="tab" data-v="cel" aria-pressed="false">Celular</button></div>
+      <div class="stage"><div class="site" id="site" data-p="corp">
+        <div class="s-nav"><b>Sua Marca</b><span>Início · Serviços · Contato</span></div>
+        <div class="s-hero"><h4>Seu negócio com a cara que ele merece</h4><p>Texto claro, cores com propósito e botões que levam o cliente até você.</p><span class="s-btn">Falar agora</span></div>
+        <div class="s-cards"><div>Serviço<small>descrição curta</small></div><div>Serviço<small>descrição curta</small></div><div>Serviço<small>descrição curta</small></div></div>
+      </div></div>
+    </div>
+  </div>
+
+  <section id="servicos">
+    <div class="sec-h"><p class="eyebrow">Do básico ao avançado</p><h2>Você pede o que precisa. Eu entrego no nível certo.</h2><p>Todo projeto passa pelo mesmo cuidado com o visual. O que muda é a complexidade por trás.</p></div>
+    <div class="levels">
+      <div class="level"><span class="n">Nível 1 · Básico</span><h3>Presença online</h3><p>Para quem precisa aparecer bem e ser encontrado.</p><ul><li>Página única de apresentação</li><li>Cartão digital e portfólio</li><li>Botão direto para o WhatsApp</li><li>Mapa, horários e redes sociais</li></ul></div>
+      <div class="level"><span class="n">Nível 2 · Intermediário</span><h3>Site completo</h3><p>Para empresas que querem mostrar serviços e receber contatos.</p><ul><li>Várias páginas e galeria</li><li>Formulários com envio por e-mail</li><li>Blog e conteúdo editável</li><li>Preparado para aparecer no Google</li></ul></div>
+      <div class="level hi"><span class="n">Nível 3 · Avançado</span><h3>Sistemas sob medida</h3><p>Para quem quer automatizar o trabalho do dia a dia.</p><ul><li>Reservas, agendamento e pedidos</li><li>Painel da equipe com login seguro</li><li>Cobrança, avisos e recibos</li><li>Banco de dados, backup e relatórios</li></ul></div>
+    </div>
+    <div class="principles" aria-label="Como cuido do design">
+      <div><b>Hierarquia clara</b><span>O olho vai direto ao que importa.</span></div>
+      <div><b>Celular primeiro</b><span>A maioria dos clientes chega pelo celular.</span></div>
+      <div><b>Identidade própria</b><span>Cores e fontes escolhidas para a sua marca.</span></div>
+      <div><b>Leitura confortável</b><span>Contraste e tamanhos pensados para todos.</span></div>
+    </div>
+  </section>
+
+  <section id="projetos">
+    <div class="sec-h"><p class="eyebrow">Projetos</p><h2>Sistemas para negócios diferentes.</h2><p>Um projeto em produção e modelos de demonstração para outros tipos de negócio. Cada demonstração funciona de verdade, com dados fictícios.</p></div>
+    <div class="filters" role="group" aria-label="Filtrar projetos">
+      <button class="tab" type="button" data-f="all" aria-pressed="true">Todos</button>
+      <button class="tab" type="button" data-f="res" aria-pressed="false">Reservas</button>
+      <button class="tab" type="button" data-f="ges" aria-pressed="false">Gestão</button>
+    </div>
+    <div class="pgrid">
+      <article class="card proj" data-c="res">
+        <span class="badge">Em produção</span>
+        <h3>Reservas do SEAAC Bauru</h3>
+        <p>Espaço de Lazer e Espaço Kids em um único sistema, com painel da equipe, cobrança e lista de espera.</p>
+        <div class="stack"><span>PHP</span><span>MySQL</span><span>2FA</span><span>E-mail</span></div>
+        <a class="btn ghost" href="#sistema">Ver por dentro</a>
+      </article>
+      <article class="card proj" data-c="res">
+        <span class="badge demo">Modelo de demonstração</span>
+        <h3>Agenda para clínica ou salão</h3>
+        <p>O cliente escolhe o horário livre e recebe a confirmação. A equipe vê o dia inteiro em uma tela.</p>
+        <div class="mini"><div class="slots" id="slots" role="group" aria-label="Horários de hoje"></div><div class="out" id="slotout" aria-live="polite">Escolha um horário livre.</div></div>
+      </article>
+      <article class="card proj" data-c="ges">
+        <span class="badge demo">Modelo de demonstração</span>
+        <h3>Controle de estoque para loja</h3>
+        <p>Entradas e saídas em poucos cliques, com alerta quando um item chega no mínimo.</p>
+        <div class="mini"><div class="stk" id="stk"></div></div>
+      </article>
+      <article class="card proj" data-c="ges">
+        <span class="badge demo">Modelo de demonstração</span>
+        <h3>Mensalidades de academia ou escola</h3>
+        <p>Quem pagou, quem está em aberto e quanto já entrou no mês. Marque como pago para ver o total mudar.</p>
+        <div class="mini"><div class="mens" id="mens"></div><div class="bar" aria-hidden="true"><i id="mbar"></i></div><div class="out" id="mout" aria-live="polite"></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="sistema">
+    <div class="sec-h"><p class="eyebrow">Caso real · SEAAC Bauru e Região</p><h2>Um sistema avançado por dentro.</h2><p>Reservas do Espaço de Lazer e do Espaço Kids do SEAAC, com um painel único. As telas abaixo são versões de demonstração com dados fictícios. Experimente.</p></div>
+    <div class="tabs" role="tablist" aria-label="Telas do sistema">
+      <button class="tab" role="tab" id="t0" aria-controls="p0" aria-selected="true" type="button">Calendário</button>
+      <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="false" type="button" tabindex="-1">Cobranças</button>
+      <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" type="button" tabindex="-1">Lista de espera</button>
+    </div>
+    <div class="card">
+      <div class="panel" id="p0" role="tabpanel" aria-labelledby="t0"><div><h3>Datas livres, em espera e reservadas.</h3><p class="t">O cliente vê o calendário e faz a pré-reserva. A data fica segurada por 5 dias úteis e volta a ficar livre se não for confirmada.</p><ul><li>Prazo calculado sem sábado e domingo</li><li>Bloqueio de datas pela equipe</li><li>Mesmo painel para dois espaços</li></ul></div>
+    <div class="card" style="box-shadow:none" aria-label="Calendário de demonstração">
+      <p class="demo-tag">Teste você mesmo · dados fictícios</p>
+      <div class="cal-head"><button id="prev" type="button" aria-label="Mês anterior">‹</button><h3 id="mname"></h3><button id="next" type="button" aria-label="Próximo mês">›</button></div>
+      <div class="grid" id="cal"></div>
+      <div class="legend"><span><i style="background:var(--ok-bg)"></i>Livre</span><span><i style="background:var(--warn-bg)"></i>Pré-reserva</span><span><i style="background:var(--busy-bg)"></i>Reservado</span></div>
+      <div class="result" id="calres" aria-live="polite">Clique em uma data livre para ver como funciona a pré-reserva.</div>
+    </div>
+      </div>
+      <div class="panel" id="p1" role="tabpanel" aria-labelledby="t1" hidden>
+        <div><h3>Avise quem precisa pagar, sem esforço.</h3><p class="t">A equipe vê quem está vencido, abre a mensagem pronta no WhatsApp e o sistema registra quem foi avisado e quando.</p><ul><li>Mensagem preenchida com nome, parcela e valor</li><li>Registro de aviso por cliente</li><li>Baixa manual com recibo por e-mail</li></ul></div>
+        <div class="pay" id="pay"></div>
+      </div>
+      <div class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+        <div><h3>Data lotada? O cliente entra na fila.</h3><p class="t">Quando uma pré-reserva vence ou é cancelada, a equipe vê quem estava esperando por aquela data e avisa em seguida.</p><ul><li>Fila por data e por espaço</li><li>Visível no painel inicial</li><li>Contato direto do interessado</li></ul></div>
+        <div class="wl">
+          <div class="dates" id="wldates" role="group" aria-label="Datas lotadas"></div>
+          <input id="wlname" type="text" placeholder="Seu nome" autocomplete="off">
+          <button class="btn primary" id="wljoin" type="button">Entrar na lista de espera</button>
+          <ul class="queue" id="queue" aria-live="polite"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo">
+    <div class="sec-h"><p class="eyebrow">Como eu trabalho</p><h2>Um processo curto e claro.</h2></div>
+    <ol class="steps">
+      <li><h3>Conversa</h3><p>Você explica como faz hoje. Eu pergunto o que falta.</p></li>
+      <li><h3>Proposta</h3><p>Escopo, prazo e valor combinados por escrito antes de começar.</p></li>
+      <li><h3>Desenvolvimento</h3><p>Você acompanha e pede ajustes durante o caminho.</p></li>
+      <li><h3>Entrega e suporte</h3><p>Instalo no seu domínio, explico o uso e continuo disponível.</p></li>
+    </ol>
+  </section>
+
+  <section id="orcamento">
+    <div class="sec-h"><p class="eyebrow">Orçamento</p><h2>Monte seu pedido em 20 segundos.</h2><p>Escolha o que precisa e envie a mensagem pronta direto no meu WhatsApp.</p></div>
+    <div class="quote card">
+      <div>
+        <fieldset><legend>Preciso de</legend><div class="chips" id="q-type">
+          <label><input type="radio" name="type" value="um site institucional" checked><span>Site</span></label>
+          <label><input type="radio" name="type" value="um sistema de reservas ou agendamento"><span>Reservas</span></label>
+          <label><input type="radio" name="type" value="um painel administrativo"><span>Painel</span></label>
+          <label><input type="radio" name="type" value="manutenção de um site ou sistema que já existe"><span>Manutenção</span></label>
+        </div></fieldset>
+        <fieldset><legend>Quero também</legend><div class="chips" id="q-ext">
+          <label><input type="checkbox" value="aviso por WhatsApp"><span>WhatsApp</span></label>
+          <label><input type="checkbox" value="e-mails automáticos"><span>E-mails</span></label>
+          <label><input type="checkbox" value="controle de cobrança"><span>Cobrança</span></label>
+          <label><input type="checkbox" value="login seguro para a equipe"><span>Login seguro</span></label>
+          <label><input type="checkbox" value="instalação e hospedagem"><span>Hospedagem</span></label>
+        </div></fieldset>
+        <fieldset><legend>Seu nome</legend><input type="text" id="q-name" placeholder="Como posso te chamar?" autocomplete="off"></fieldset>
+      </div>
+      <div>
+        <div class="msg" id="msg" aria-live="polite"></div>
+        <div class="msg-actions"><a class="btn primary" id="sendwa" href="#" target="_blank" rel="noopener">Enviar no WhatsApp</a><button class="btn ghost" id="copymsg" type="button">Copiar mensagem</button><span id="copied" class="mono" style="font-size:.8rem;color:var(--ok)"></span></div>
+      </div>
+    </div>
+    <div class="contact"><span>WhatsApp:</span><code id="wa">(14) 99110-4822</code><button type="button" data-copy="wa">Copiar</button><span>E-mail:</span><code id="em">viniciussantos01072007@gmail.com</code><button type="button" data-copy="em">Copiar</button></div>
+  </section>
+
+  <footer>© <span class="who-name">Vinícius Cardoso dos Santos</span> · Sites e sistemas sob medida · Bauru, SP</footer>
+</div>
+
+<script>
+(function(){
+var $=function(s,r){return (r||document).querySelector(s)};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var MES=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+function pad(n){return (n<10?'0':'')+n}
+function fmt(d){return pad(d.getDate())+'/'+pad(d.getMonth()+1)}
+function addBiz(d,n){var x=new Date(d);while(n>0){x.setDate(x.getDate()+1);var w=x.getDay();if(w!==0&&w!==6)n--}return x}
+
+/* tema */
+$('#theme').addEventListener('click',function(){
+  var r=document.documentElement,cur=r.getAttribute('data-theme');
+  if(!cur)cur=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+  r.setAttribute('data-theme',cur==='dark'?'light':'dark');
+});
+
+/* calendário de demonstração */
+var today=new Date();today.setHours(0,0,0,0);
+var view=new Date(today.getFullYear(),today.getMonth(),1),sel=null;
+function state(y,m,d){var k=(y*37+m*11+d*7)%13;var w=new Date(y,m,d).getDay();
+  if(k===0||k===5&&w===6)return 'busy'; if(k===3||k===8)return 'hold'; return 'free'}
+function draw(){
+  var y=view.getFullYear(),m=view.getMonth();
+  $('#mname').textContent=MES[m]+' '+y;
+  var first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),h='';
+  ['D','S','T','Q','Q','S','S'].forEach(function(x){h+='<div class="dow">'+x+'</div>'});
+  for(var i=0;i<first;i++)h+='<div class="d off"></div>';
+  for(var d=1;d<=days;d++){
+    var dt=new Date(y,m,d),past=dt<=today,st=past?'past':state(y,m,d),isSel=sel&&sel.getTime()===dt.getTime();
+    var dis=(past||st!=='free');
+    h+='<button type="button" class="d '+st+(isSel?' sel':'')+'" data-d="'+d+'"'+(dis?' disabled':'')+' aria-label="'+d+' de '+MES[m]+'">'+d+'</button>';
+  }
+  $('#cal').innerHTML=h;
+  $('#prev').disabled=(y===today.getFullYear()&&m===today.getMonth());
+}
+$('#cal').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-d]');if(!b||b.disabled)return;
+  sel=new Date(view.getFullYear(),view.getMonth(),+b.getAttribute('data-d'));
+  var lim=addBiz(today,5);
+  $('#calres').innerHTML='Pré-reserva registrada para <b>'+fmt(sel)+'</b>. A data fica segurada até <b>'+fmt(lim)+'</b> (5 dias úteis, sem contar sábado e domingo). Depois disso, se não for confirmada, volta a ficar livre para a lista de espera.';
+  draw();
+});
+$('#prev').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()-1,1);draw()});
+$('#next').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()+1,1);draw()});
+draw();
+
+/* números animados */
+$$('.fact strong').forEach(function(el){
+  var n=+el.getAttribute('data-n');el.textContent=n;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var t0=null;el.textContent=0;
+  function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/900,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)}
+  requestAnimationFrame(step);
+});
+
+/* serviços */
+$$('.svc').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-expanded',b.getAttribute('aria-expanded')==='true'?'false':'true')})});
+
+/* abas */
+var tabs=$$('.tab[role=tab]');
+function showTab(t){tabs.forEach(function(x){var on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$('#'+x.getAttribute('aria-controls')).hidden=!on})}
+tabs.forEach(function(t,i){t.addEventListener('click',function(){showTab(t)});
+  t.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];showTab(n);n.focus()}})});
+
+/* cobranças */
+var pays=[
+ {n:'Cliente A',m:'Parcela 2/3 · R$ 650,00 · venceu há 4 dias',s:'late',l:'Vencida'},
+ {n:'Cliente B',m:'Parcela 1/2 · R$ 325,00 · vence hoje',s:'today',l:'Vence hoje'},
+ {n:'Cliente C',m:'Parcela 3/3 · R$ 650,00 · vence em 6 dias',s:'ok',l:'Em dia'}];
+function drawPay(){
+  $('#pay').innerHTML=pays.map(function(p,i){
+    if(p.paid)return '<div class="row"><span class="who">'+p.n+'</span><span class="pill ok">Pago</span><span class="meta">Recibo enviado por e-mail</span></div>';
+    return '<div class="row"><span class="who">'+p.n+'</span><span class="pill '+p.s+'">'+p.l+'</span><span class="meta">'+p.m+(p.notified?' · <b style="color:var(--ok)">avisado agora</b>':'')+'</span>'
+      +'<div class="acts"><button type="button" class="wa" data-a="wa" data-i="'+i+'"'+(p.notified?' disabled':'')+'>'+(p.notified?'Aviso registrado':'Avisar no WhatsApp')+'</button><button type="button" data-a="paid" data-i="'+i+'">Já pagou</button></div></div>';
+  }).join('');
+}
+$('#pay').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-a]');if(!b)return;var p=pays[+b.getAttribute('data-i')];
+  if(b.getAttribute('data-a')==='wa')p.notified=true;else p.paid=true;drawPay();
+});
+drawPay();
+
+/* lista de espera */
+var wl={},wlDates=[],cur=null;
+(function(){var d=new Date(today);d.setDate(d.getDate()+1);
+  while(d.getDay()!==6)d.setDate(d.getDate()+1);
+  d.setDate(d.getDate()+7);
+  for(var i=0;i<3;i++){var s=fmt(d);wlDates.push(s);wl[s]=i===0?['Cliente D','Cliente E']:i===1?['Cliente F']:[];d.setDate(d.getDate()+7)}
+  cur=wlDates[0]})();
+function drawWL(){
+  $('#wldates').innerHTML=wlDates.map(function(s){return '<button type="button" data-s="'+s+'" aria-pressed="'+(s===cur)+'">'+s+' · lotado</button>'}).join('');
+  $('#queue').innerHTML=wl[cur].length?wl[cur].map(function(n,i){return '<li class="'+(n.indexOf('(você)')>-1?'me':'')+'"><span>'+(i+1)+'º · '+n+'</span><span class="mono">'+(n.indexOf('(você)')>-1?'sua posição':'aguardando')+'</span></li>'}).join(''):'<li><span>Ninguém na fila para esta data ainda.</span></li>';
+}
+$('#wldates').addEventListener('click',function(e){var b=e.target.closest('button[data-s]');if(!b)return;cur=b.getAttribute('data-s');drawWL()});
+$('#wljoin').addEventListener('click',function(){var n=$('#wlname').value.trim()||'Você';wl[cur].push(n+' (você)');drawWL()});
+drawWL();
+
+
+
+/* estilos de design ao vivo */
+$$('#presets [data-p]').forEach(function(b){b.addEventListener('click',function(){
+  $$('#presets [data-p]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('#site').setAttribute('data-p',b.getAttribute('data-p'))})});
+$$('.views [data-v]').forEach(function(b){b.addEventListener('click',function(){
+  $$('.views [data-v]').forEach(function(x){x.setAttribute('aria-pressed',x===b)});$('#site').classList.toggle('cel',b.getAttribute('data-v')==='cel')})});
+
+/* filtros de projetos */
+$$('[data-f]').forEach(function(b){b.addEventListener('click',function(){
+  $$('[data-f]').forEach(function(x){var on=x===b;x.setAttribute('aria-pressed',on);x.classList.toggle('on',on)});
+  var f=b.getAttribute('data-f');$$('.proj').forEach(function(p){p.hidden=!(f==='all'||p.getAttribute('data-c')===f)});
+})});
+$('[data-f=all]').classList.add('on');
+
+/* agenda de clínica */
+var taken=['09:00','10:30','14:00'],hrs=['09:00','09:30','10:00','10:30','11:00','14:00','14:30','15:00','15:30','16:00'],pick=null;
+function drawSlots(){$('#slots').innerHTML=hrs.map(function(h){var t=taken.indexOf(h)>-1;return '<button type="button" data-h="'+h+'"'+(t?' disabled':'')+(h===pick?' class="on"':'')+'>'+h+'</button>'}).join('')}
+$('#slots').addEventListener('click',function(e){var b=e.target.closest('button[data-h]');if(!b||b.disabled)return;pick=b.getAttribute('data-h');
+  $('#slotout').innerHTML='Horário das <b>'+pick+'</b> reservado. A confirmação segue para o WhatsApp do cliente e o horário some da agenda.';drawSlots()});
+drawSlots();
+
+/* estoque */
+var items=[{n:'Camiseta básica',q:12,min:5},{n:'Boné',q:6,min:5},{n:'Meia esportiva',q:20,min:8}];
+function drawStk(){$('#stk').innerHTML=items.map(function(it,i){return '<span>'+it.n+(it.q<=it.min?' <span class="low">Repor</span>':'')+'</span><button type="button" data-i="'+i+'" data-d="-1" aria-label="Retirar 1 de '+it.n+'">−</button><span class="q">'+it.q+'</span><button type="button" data-i="'+i+'" data-d="1" aria-label="Adicionar 1 em '+it.n+'">+</button>'}).join('')}
+$('#stk').addEventListener('click',function(e){var b=e.target.closest('button[data-i]');if(!b)return;var it=items[+b.getAttribute('data-i')];it.q=Math.max(0,it.q+(+b.getAttribute('data-d')));drawStk()});
+drawStk();
+
+/* mensalidades */
+var mens=[{n:'Aluno A',v:120,p:true},{n:'Aluno B',v:120,p:false},{n:'Aluno C',v:150,p:false},{n:'Aluno D',v:120,p:true}];
+function brl(n){return 'R$ '+n.toFixed(2).replace('.',',')}
+function drawMens(){var tot=0,got=0;
+  $('#mens').innerHTML=mens.map(function(m,i){tot+=m.v;if(m.p)got+=m.v;return '<button type="button" data-i="'+i+'" class="'+(m.p?'paid':'')+'" aria-pressed="'+m.p+'"><span>'+m.n+'</span><span>'+brl(m.v)+' · '+(m.p?'pago':'em aberto')+'</span></button>'}).join('');
+  $('#mbar').style.width=Math.round(got/tot*100)+'%';$('#mout').innerHTML='Recebido no mês: <b>'+brl(got)+'</b> de '+brl(tot)}
+$('#mens').addEventListener('click',function(e){var b=e.target.closest('button[data-i]');if(!b)return;var m=mens[+b.getAttribute('data-i')];m.p=!m.p;drawMens()});
+drawMens();
+
+/* gerador de pedido */
+var WA_NUMBER='5514991104822';
+function buildMsg(){
+  var type=($('input[name=type]:checked')||{}).value||'';
+  var ext=$$('#q-ext input:checked').map(function(i){return i.value});
+  var name=$('#q-name').value.trim();
+  var m='Olá'+(name?', meu nome é '+name:'')+'! Vi seu portfólio e preciso de '+type+'.';
+  if(ext.length)m+='\n\nGostaria de incluir: '+ext.join(', ')+'.';
+  m+='\n\nPodemos conversar sobre prazo e valor?';
+  $('#msg').textContent=m;$('#sendwa').href='https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(m);return m;
+}
+$('.quote').addEventListener('input',buildMsg);buildMsg();
+function copyText(txt,done,fail){try{navigator.clipboard.writeText(txt).then(done,fail)}catch(e){fail()}}
+function selectNode(el){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r)}
+$('#copymsg').addEventListener('click',function(){
+  copyText(buildMsg(),function(){$('#copied').textContent='Copiado!';setTimeout(function(){$('#copied').textContent=''},1800)},function(){selectNode($('#msg'));$('#copied').textContent='Selecionado: use Ctrl+C'});
+});
+$$('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+  var el=document.getElementById(b.getAttribute('data-copy')),t=b.textContent;
+  copyText(el.textContent,function(){b.textContent='Copiado';setTimeout(function(){b.textContent=t},1500)},function(){selectNode(el)});
+})});
+})();
+</script>
+</body>
+</html>
